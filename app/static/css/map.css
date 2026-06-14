@@ -1,0 +1,196 @@
+/* ── Ocultar controles MapLibre no deseados ── */
+.maplibregl-ctrl-zoom-in,
+.maplibregl-ctrl-zoom-out,
+.maplibregl-ctrl-compass  { display: none !important; }
+.maplibregl-ctrl-attrib   { display: none !important; }
+.maplibregl-ctrl-logo     { display: none !important; }
+
+#ml-map { position: absolute; inset: 0; }
+
+/* ── Botón + publicar ── */
+#btn-add {
+    position: absolute; bottom: 32px; right: 24px;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #e63946; color: white;
+    font-size: 2rem; border: none; cursor: pointer;
+    box-shadow: 0 6px 24px rgba(230,57,70,.45);
+    z-index: 900; display: flex;
+    align-items: center; justify-content: center;
+    transition: transform .15s, box-shadow .15s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+#btn-add:active { transform: scale(.92); box-shadow: 0 2px 10px rgba(230,57,70,.3); }
+
+/* ── Botón ubicación ── */
+#btn-locate {
+    position: absolute; bottom: 32px; left: 24px;
+    width: 46px; height: 46px; border-radius: 20%;
+    background: white; border: none; cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    z-index: 900; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: transform .15s;
+}
+#btn-locate:active { transform: scale(.92); }
+
+/* ── Overlay ── */
+#overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.45); z-index: 1400;
+    animation: fadeIn .2s ease;
+}
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* ── Bottom sheet ── */
+#sheet {
+    display: none; position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: #fff; border-radius: 24px 24px 0 0;
+    box-shadow: 0 -8px 40px rgba(0,0,0,.22);
+    z-index: 1500; flex-direction: column;
+    max-height: 92dvh; overflow: hidden;
+    animation: slideUp .28s cubic-bezier(.32,1,.44,1);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+.sheet-handle {
+    width: 40px; height: 4px; background: #e0e0e0;
+    border-radius: 2px; margin: 12px auto 0; flex-shrink: 0;
+}
+.sheet-inner {
+    overflow-y: auto; padding: 16px 20px 32px;
+    flex: 1; -webkit-overflow-scrolling: touch;
+}
+.sheet-inner h2 {
+    font-size: 1.05rem; font-weight: 700;
+    color: #1d1d1d; margin-bottom: 18px;
+}
+
+/* Chips tipo vivienda */
+.tipo-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-bottom: 20px;
+}
+.tipo-chip {
+    padding: 12px 10px; border: 2px solid #e8e8e8;
+    border-radius: 12px; background: #fafafa;
+    cursor: pointer; text-align: center;
+    font-size: .83rem; font-weight: 600; color: #444;
+    transition: all .15s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.tipo-chip .icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+.tipo-chip.selected { border-color: #e63946; background: #fff0f1; color: #e63946; }
+
+/* Inputs */
+.field-label {
+    font-size: .75rem; font-weight: 700; color: #777;
+    text-transform: uppercase; letter-spacing: .04em;
+    margin-bottom: 6px; display: block;
+}
+#inp-telefono, #inp-descripcion {
+    width: 100%; border: 1.5px solid #e8e8e8;
+    border-radius: 12px; padding: 12px 14px;
+    font-size: 16px; font-family: inherit; color: #1d1d1d;
+    margin-bottom: 20px; transition: border-color .15s;
+    box-sizing: border-box;
+}
+#inp-telefono:focus, #inp-descripcion:focus {
+    outline: none; border-color: #e63946;
+}
+#inp-descripcion { resize: vertical; min-height: 64px; }
+
+/* Fotos */
+.fotos-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 8px; margin-bottom: 20px;
+}
+.foto-slot {
+    aspect-ratio: 1; border-radius: 12px;
+    border: 2px dashed #e8e8e8; background: #fafafa;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; cursor: pointer; overflow: hidden;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color .15s;
+}
+.foto-slot:hover { border-color: #e63946; }
+.foto-slot img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+}
+.foto-slot .remove-foto {
+    position: absolute; top: 3px; right: 3px;
+    background: rgba(0,0,0,.55); color: white;
+    border: none; border-radius: 50%;
+    width: 20px; height: 20px; font-size: .7rem;
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center; z-index: 2;
+}
+#foto-input { display: none; }
+
+/* Estado GPS */
+#gps-status {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .8rem; color: #777; margin-bottom: 20px;
+    background: #f5f5f5; padding: 10px 14px; border-radius: 10px;
+}
+#gps-status .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #ccc; flex-shrink: 0;
+    transition: background .3s;
+}
+#gps-status.ok  .dot { background: #2ecc71; }
+#gps-status.err .dot { background: #e63946; }
+
+/* Botón guardar */
+#btn-guardar {
+    width: 100%; padding: 16px; background: #e63946;
+    color: white; border: none; border-radius: 14px;
+    font-size: 1rem; font-weight: 700; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background .15s, transform .1s;
+}
+#btn-guardar:active { transform: scale(.98); background: #c0303c; }
+#btn-guardar:disabled { background: #ccc; cursor: not-allowed; }
+
+/* ── Toast ── */
+#toast {
+    display: none; position: fixed;
+    top: 20px; left: 50%; transform: translateX(-50%);
+    background: rgba(20,20,20,.88); color: white;
+    padding: 10px 20px; border-radius: 24px;
+    font-size: .83rem; z-index: 2000; pointer-events: none;
+    white-space: nowrap;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    backdrop-filter: blur(8px);
+}
+
+/* ── Popup ── */
+.casa-popup { font-family: 'Segoe UI', system-ui, sans-serif; padding: 2px; }
+.casa-popup .popup-fotos { display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
+.casa-popup .popup-fotos img {
+    width: 54px; height: 54px; object-fit: cover; border-radius: 6px;
+}
+.casa-popup .tipo-badge {
+    display: inline-block; background: #fff0f1; color: #e63946;
+    font-size: .72rem; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px; margin-bottom: 5px;
+}
+.casa-popup .desc { font-size: .82rem; color: #555; margin: 3px 0; }
+.casa-popup .tel  { font-size: .85rem; color: #1d3557; font-weight: 600; margin-top: 4px; }
+
+@keyframes pinPop {
+    0%   { transform: scale(0) translateY(-10px); opacity: 0; }
+    70%  { transform: scale(1.3) translateY(-3px); }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
