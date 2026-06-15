@@ -1,4 +1,4 @@
-# Bogotá Arriendos 🏠
+# Bogotá Arriendos 
 
 **Stack:** FastAPI · PostGIS · Martin  · OSRM  · MapLibre GL 
 
@@ -62,21 +62,21 @@ docker compose logs -f app
 ## SQL
 
 ```sql
- CREATE VIEW public.bogota_casas_view AS
+ CREATE VIEW bogota_casas_view AS
   SELECT id,
      nombre,
      tipo,
      telefono,
      descripcion,
      creado_en,
-     (ubicacion)::public.geometry AS geom
-    FROM public.casas;
+     (ubicacion)::geometry AS geom
+    FROM casas;
 
- CREATE VIEW public.bogota_ciclovias AS
+ CREATE VIEW bogota_ciclovias AS
   SELECT osm_id,
      name,
      way AS geom
-     FROM public.planet_osm_line
+     FROM planet_osm_line
      WHERE (highway = 'cycleway'::text);
 
 ```
