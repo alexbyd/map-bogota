@@ -59,6 +59,28 @@ docker compose logs -f app
 ```
 
 ---
+## SQL
+
+```sql
+ CREATE VIEW public.bogota_casas_view AS
+  SELECT id,
+     nombre,
+     tipo,
+     telefono,
+     descripcion,
+     creado_en,
+     (ubicacion)::public.geometry AS geom
+    FROM public.casas;
+
+ CREATE VIEW public.bogota_ciclovias AS
+  SELECT osm_id,
+     name,
+     way AS geom
+     FROM public.planet_osm_line
+     WHERE (highway = 'cycleway'::text);
+
+```
+---
 
 ## Características
 
