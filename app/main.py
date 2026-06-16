@@ -1,6 +1,5 @@
-"""
-main.py — FastAPI backend
-"""
+
+
 import os
 import json
 import asyncio

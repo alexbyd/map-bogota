@@ -15,7 +15,6 @@ WHERE highway IS NOT NULL
   AND highway NOT IN ('footway','path','cycleway','steps','platform');
 
 -- ── Edificios ─────────────────────────────────────────────────────────────────
--- FIX: eliminada definición duplicada que existía en el archivo original
 CREATE OR REPLACE VIEW bogota_edificios AS
 SELECT
     osm_id,

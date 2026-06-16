@@ -127,7 +127,7 @@ const map = new maplibregl.Map({
     attributionControl: false,
 });
 // Sin zoom, sin brújula
-map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: false }));
+map.addControl(new maplibregl.NavigationControl({ showZoom: true, showCompass: true }));
 
 map.on('load', () => {
     // Capa ruta

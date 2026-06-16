@@ -1,5 +1,7 @@
 # Bogotá Arriendos 
 
+### Mapa de la ciudad donden ubicar de forma rapida un piso en alquiler
+
 **Stack:** FastAPI · PostGIS · Martin  · OSRM  · MapLibre GL 
 
 ---
@@ -28,7 +30,7 @@ bogota-map/
 
 ---
 
-## Setup inicial (primera vez)
+## Setup 
 
 ### 1. Prerequisitos
 - Docker Desktop 
@@ -84,12 +86,12 @@ docker compose logs -f app
 
 ## Características
 
-- **Mapa limpio** — solo el mapa, sin barras ni botones de zoom
+- **Mapa** — solo el mapa, sin barras ni botones de zoom
 - **Botón +** — abre formulario para publicar un arriendo
 - **Formulario**
   - Tipo: Apartamento / Habitación / Apartaestudio / Casa
   - Número de contacto del arrendador
-  - Hasta 4 fotos (comprimidas automáticamente a 800px)
+  - Hasta 4 fotos 
   - Ubicación automática por GPS al abrir el formulario
 - **Rutas** — cálculo de rutas
 - **Tiempo real** — WebSockets: los nuevos arriendos aparecen en todos los clientes abiertos
